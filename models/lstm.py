@@ -37,16 +37,16 @@ class LSTM_Model:
         self.epochs = epochs
         self.threshold = threshold
         self.class_weight = compute_class_weight(class_weight='balanced', classes=[0, 1], y=labels)
-        model = Sequential()
-        model.add(LSTM(300, input_shape=(vectors.shape[1], vectors.shape[2])))
-        model.add(ReLU())
-        model.add(Dropout(dropout))
-        model.add(Dense(300))
-        model.add(ReLU())
-        model.add(Dropout(dropout))
-        model.add(Dense(2, activation='softmax'))
-        # Lower learning rate to prevent divergence
 
+
+        model = Sequential([
+            LSTM(300, input_shape=(vectors.shape[1], vectors.shape[2])) # dim
+
+            , Dropout(dropout)
+            , Dense(2, activation='softmax')
+        ])
+
+        # Lower learning rate to prevent divergence
         adamax = Adamax(lr)
         model.compile(adamax, 'categorical_crossentropy', metrics=['accuracy'])
         self.model = model
@@ -66,18 +66,16 @@ class LSTM_Model:
     """
 
     def test(self):
-        # self.model.load_weights(self.name + "_model.pkl")
-        values = self.model.evaluate(self.x_test, self.y_test, batch_size=self.batch_size)
+        # self.model.load_weights("reentrancy_code_snippets_2000_model.pkl")
+        values = self.model.evaluate(self.x_test, self.y_test, batch_size=self.batch_size, verbose=1)
         print("Accuracy: ", values[1])
         predictions = (self.model.predict(self.x_test, batch_size=self.batch_size)).round()
-        # predictions = (predictions >= self.threshold)
 
         tn, fp, fn, tp = confusion_matrix(np.argmax(self.y_test, axis=1), np.argmax(predictions, axis=1)).ravel()
-        print("Accuracy: ", (tp + tn) / (tp + tn + fp + fn))
-        print('False positive rate(FPR): ', fp / (fp + tn))
+        print('False positive rate(FP): ', fp / (fp + tn))
         print('False negative rate(FN): ', fn / (fn + tp))
         recall = tp / (tp + fn)
-        print('Recall(TPR): ', recall)
+        print('Recall: ', recall)
         precision = tp / (tp + fp)
         print('Precision: ', precision)
         print('F1 score: ', (2 * precision * recall) / (precision + recall))

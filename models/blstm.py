@@ -31,13 +31,15 @@ class BLSTM:
         self.batch_size = batch_size
         self.epochs = epochs
         self.class_weight = compute_class_weight(class_weight='balanced', classes=[0, 1], y=labels)
-        model = Sequential()
-        model.add(Bidirectional(LSTM(300), input_shape=(vectors.shape[1], vectors.shape[2])))
-        model.add(ReLU())
-        model.add(Dropout(dropout))
-        model.add(Dense(2, activation='softmax'))
-        # Lower learning rate to prevent divergence
 
+        model = Sequential([
+            Bidirectional(LSTM(300), input_shape=(vectors.shape[1], vectors.shape[2])) # dim
+
+            , Dropout(dropout)
+            , Dense(2, activation='softmax')
+        ])
+
+        # Lower learning rate to prevent divergence
         adamax = Adamax(lr)
         model.compile(adamax, 'categorical_crossentropy', metrics=['accuracy'])
         self.model = model
@@ -58,8 +60,8 @@ class BLSTM:
     """
 
     def test(self):
-        # self.model.load_weights(self.name + "_model.pkl")
-        values = self.model.evaluate(self.x_test, self.y_test, batch_size=self.batch_size)
+        # self.model.load_weights("reentrancy_code_snippets_2000_model.pkl")
+        values = self.model.evaluate(self.x_test, self.y_test, batch_size=self.batch_size, verbose=1)
         print("Accuracy: ", values[1])
         predictions = (self.model.predict(self.x_test, batch_size=self.batch_size)).round()
 
