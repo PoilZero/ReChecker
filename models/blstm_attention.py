@@ -8,20 +8,16 @@ from sklearn.utils import compute_class_weight
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, LSTM, Bidirectional, ReLU
 from keras.optimizers import Adamax
+from sklearn.model_selection import train_test_split
+from P001_parser import parameter_parser
+
+args = parameter_parser()
+warnings.filterwarnings("ignore")
+
 from keras.layers import Layer
 from keras import backend as K
 from keras import initializers, regularizers, constraints
-from sklearn.model_selection import train_test_split
-from parser import parameter_parser
-from models.loss_draw import LossHistory
 
-args = parameter_parser()
-
-warnings.filterwarnings("ignore")
-
-"""
-Bidirectional LSTM neural network with attention
-"""
 
 
 def dot_product(x, kernel):
@@ -157,16 +153,16 @@ class Addition(Layer):
 
 class BLSTM_Attention:
     def __init__(self, data, name="", batch_size=args.batch_size, lr=args.lr, epochs=args.epochs, dropout=args.dropout):
-        vectors = np.stack(data.iloc[:, 1].values)
-        labels = data.iloc[:, 0].values
-        positive_idxs = np.where(labels == 1)[0]
-        negative_idxs = np.where(labels == 0)[0]
-        undersampled_negative_idxs = np.random.choice(negative_idxs, len(positive_idxs), replace=False)
-        resampled_idxs = np.concatenate([positive_idxs, undersampled_negative_idxs])
-        idxs = np.concatenate([positive_idxs, negative_idxs])
-
-        x_train, x_test, y_train, y_test = train_test_split(vectors[idxs], labels[idxs],
-                                                            test_size=0.99, stratify=labels[idxs])
+        '''
+            np.array(data).shape == (1671, 2)
+            2:
+                0: vector=>(100, 300): vectors[1671]
+                1: label=>0/1: labels[1671]
+        '''
+        vectors = np.stack(data.iloc[:, 0].values)
+        labels = data.iloc[:, 1].values
+        x_train, x_test, y_train, y_test = train_test_split(vectors, labels,
+                                                            test_size=0.2, stratify=labels)
 
         self.x_train = x_train
         self.x_test = x_test
@@ -187,20 +183,17 @@ class BLSTM_Attention:
         model.add(Dropout(dropout))
         model.add(Dense(2, activation='softmax'))
         # Lower learning rate to prevent divergence
+
         adamax = Adamax(lr)
         model.compile(adamax, 'categorical_crossentropy', metrics=['accuracy'])
         self.model = model
 
     """
-    Trains model
+        Trains model
     """
-
     def train(self):
-        history = LossHistory()
         self.model.fit(self.x_train, self.y_train, batch_size=self.batch_size, epochs=self.epochs,
-                       class_weight=self.class_weight, verbose=1, callbacks=[history], validation_data=(self.x_test, self.y_test))
-        self.model.save_weights(self.name + "_model.pkl")
-        history.loss_plot('epoch')
+                       class_weight=self.class_weight)
 
     """
     Tests accuracy of model
@@ -208,8 +201,8 @@ class BLSTM_Attention:
     """
 
     def test(self):
-        # self.model.load_weights("reentrancy_code_snippets_2000_model.pkl")
-        values = self.model.evaluate(self.x_test, self.y_test, batch_size=self.batch_size, verbose=1)
+        # self.model.load_weights(self.name + "_model.pkl")
+        values = self.model.evaluate(self.x_test, self.y_test, batch_size=self.batch_size)
         print("Accuracy: ", values[1])
         predictions = (self.model.predict(self.x_test, batch_size=self.batch_size)).round()
 

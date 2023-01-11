@@ -9,28 +9,26 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout, LSTM, Bidirectional, ReLU
 from keras.optimizers import Adamax
 from sklearn.model_selection import train_test_split
-from parser import parameter_parser
+from P001_parser import parameter_parser
 
 args = parameter_parser()
-
 warnings.filterwarnings("ignore")
 
-"""
-Bidirectional LSTM neural network
-"""
 
 
 class BLSTM:
     def __init__(self, data, name="", batch_size=args.batch_size, lr=args.lr, epochs=args.epochs, dropout=args.dropout):
-        vectors = np.stack(data.iloc[:, 1].values)
-        labels = data.iloc[:, 0].values
-        positive_idxs = np.where(labels == 1)[0]
-        negative_idxs = np.where(labels == 0)[0]
-        undersampled_negative_idxs = np.random.choice(negative_idxs, len(positive_idxs), replace=False)
-        resampled_idxs = np.concatenate([positive_idxs, undersampled_negative_idxs])
+        '''
+            np.array(data).shape == (1671, 2)
+            2:
+                0: vector=>(100, 300): vectors[1671]
+                1: label=>0/1: labels[1671]
+        '''
+        vectors = np.stack(data.iloc[:, 0].values)
+        labels = data.iloc[:, 1].values
+        x_train, x_test, y_train, y_test = train_test_split(vectors, labels,
+                                                            test_size=0.2, stratify=labels)
 
-        x_train, x_test, y_train, y_test = train_test_split(vectors[resampled_idxs], labels[resampled_idxs],
-                                                            test_size=0.2, stratify=labels[resampled_idxs])
         self.x_train = x_train
         self.x_test = x_test
         self.y_train = to_categorical(y_train)

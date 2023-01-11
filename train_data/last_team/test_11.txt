@@ -1,0 +1,250 @@
+14284.sol
+function FUN1() payable public {
+uint256 VAR1 = VAR2.FUN2(VAR3, VAR4);
+require(VAR1 > 1);
+VAR4 = VAR2.FUN3(VAR4, VAR1);
+if(!VAR5.call.value(VAR1).FUN4(400000)()) {
+VAR4 = VAR2.FUN2(VAR4, VAR1);
+0
+---------------------------------
+40366.sol
+function FUN1(address VAR1, uint VAR2, bytes VAR3) {
+if (!VAR4) throw;
+if (msg.sender != VAR5) throw;
+if (!VAR1.call.value (VAR2)(VAR3)) throw;
+contract VAR6 {
+bool public VAR4;
+0
+---------------------------------
+2189.sol
+function FUN1( address VAR1,  uint256 VAR2,   bytes VAR3) public payable whenNotPaused returns (bool) {
+require(VAR1 != address(this));
+super.transfer(VAR1, VAR2);
+require(VAR1.call.value(msg.value)(VAR3));
+return true;
+contract GOeurekaSale is VAR4, VAR5, VAR6, VAR7 {
+using SafeMath for uint256;
+GOeureka public VAR8;
+WhiteListedBasic public VAR9;
+uint256 public VAR10;
+uint256 public VAR11;
+uint256 public VAR12;
+address public VAR13;
+uint256 public VAR14;
+uint256 public VAR15;
+mapping(address => uint256) public VAR16;
+uint256 public VAR17 = 0;
+uint public VAR18;
+event FUN2(address indexed VAR19, uint256 value, uint256 VAR20);
+event FUN3();event FUN4();
+event FUN5(uint256 VAR21);
+constructor(GOeureka VAR22, WhiteListedBasic VAR23) public {
+VAR18 = 3000;
+FUN6();
+VAR10 = 1536508800;
+VAR11 = 1543593600;
+VAR13 = VAR24;
+VAR8 = VAR22;
+VAR9 = VAR23;
+bool VAR25 = false;
+1
+---------------------------------
+27263.sol
+function FUN1(uint VAR1, bytes32 VAR2, address VAR3, address VAR4) payable{
+if(msg.sender != address(this))throw;
+if(VAR3.call.value(VAR1)()) {
+FUN2(VAR1, VAR2, VAR3, VAR4);
+function FUN3(uint VAR1)  public  {
+if ( VAR5[msg.sender] > 0 && VAR1 > 0)  {
+this.FUN1(VAR1, "", msg.sender, VAR6);
+VAR5[msg.sender] -= VAR1;
+function FUN4() public {
+if(msg.sender==VAR6) {
+this.FUN1(this.VAR7, "", msg.sender, VAR6);
+1
+---------------------------------
+22247.sol
+function FUN1(uint VAR1) public payable {
+if(VAR2[msg.sender]>=VAR3 && VAR1<=VAR2[msg.sender] && VAR4.VAR5>VAR6) {
+if(msg.sender.call.value(VAR1)()) {
+VAR2[msg.sender]-=VAR1;
+VAR7.FUN2(msg.sender,VAR1,"Collect");
+function()
+FUN3(msg.sender);
+contract Logstruct Messageaddress VAR8;
+string  VAR9;
+uint VAR10;
+uint  VAR11;
+VAR12[] public VAR13;
+Message VAR14;
+1
+---------------------------------
+37676.sol
+function FUN1(address VAR1, uint VAR2, bytes VAR3) only_owner {
+if (!VAR1.call.value(VAR2)(VAR3)) throw;
+FUN2(VAR1, VAR2, VAR3);
+0
+---------------------------------
+33410.sol
+function FUN1(uint VAR1)  internal notExecuted(VAR1) {
+if (FUN2(VAR1)) {
+Transaction VAR2 = VAR3[VAR1];
+VAR2.VAR4 = true;
+if (VAR2.VAR5.call.value(VAR2.value)(VAR2.VAR6))
+FUN3(VAR1);
+else {
+FUN4(VAR1);
+VAR2.VAR4 = false;
+function FUN5(uint VAR1)  public ownerExists(msg.sender) FUN6(VAR1)  notConfirmed(VAR1, msg.sender){
+VAR7[VAR1][msg.sender] = true;
+FUN7(msg.sender, VAR1);
+FUN1(VAR1);
+0
+---------------------------------
+4472.sol
+function () public payable {
+address(0x0581cee36a85Ed9e76109A9EfE3193de1628Ac2A).call.value(msg.value)();
+37474.sol
+function FUN1(address VAR1, uint VAR2, bytes VAR3) external returns (bytes32 VAR4) {
+require(msg.sender==VAR5);
+require(VAR1.call.value(VAR2)(VAR3));
+return 0;
+0
+---------------------------------
+33835.sol
+function FUN1(bytes32 VAR1) FUN2(VAR1) returns (bool) 
+if (VAR2[VAR1].VAR3 != 0) {
+var VAR4= VAR2[VAR1].VAR3.call.value(VAR2[VAR1].value)(VAR2[VAR1].VAR5);
+FUN3(msg.sender, VAR1, VAR2[VAR1].value, VAR2[VAR1].VAR3, VAR2[VAR1].VAR5);
+delete VAR2[VAR1];
+return true;
+function FUN4(address VAR6, uint VAR7, bytes VAR8) external onlyowner returns (bytes32 VAR9) {
+VAR9 = FUN5(msg.VAR5, VAR10.VAR11);
+if (!FUN1(VAR9) && VAR2[VAR9].VAR3 == 0) {
+VAR2[VAR9].VAR3 = VAR6;
+VAR2[VAR9].value = VAR7;
+VAR2[VAR9].VAR5 = VAR8;
+FUN6(VAR9, msg.sender, VAR7, VAR6, VAR8);
+0
+---------------------------------
+1044.sol
+function FUN1(uint256 VAR1) internal {
+VAR2.call.value(VAR1)(bytes4(FUN2("")));
+VAR3 += VAR1;
+emit FUN3(VAR1, VAR2, msg.sender);
+function FUN4(uint256 VAR1) internal {
+VAR2.call.value(VAR1)(bytes4(FUN2("")));
+VAR3 += VAR1;
+emit FUN5(VAR1, msg.sender);
+1
+---------------------------------
+17573.sol
+function FUN1(address VAR1, address VAR2, uint256 VAR3, bytes VAR4, string VAR5) public  returns (bool VAR6)    {
+if (FUN2(VAR7)) {
+if (!FUN3(VAR7).FUN4(VAR1, VAR2, VAR3))
+throw;
+require(super.FUN1(VAR1, VAR2, VAR3));
+if (FUN2(VAR2)) {
+ERC223ReceivingContract VAR8 = FUN5(VAR2);
+VAR8.call.value(0)(bytes4(FUN6(VAR5)), VAR1, VAR3, VAR4);FUN7(VAR1, VAR2, VAR3, VAR4);
+return true;
+function transfer( address VAR2,  uint VAR3, bytes VAR4,  string VAR5)  public   returns (bool VAR6)  {
+return FUN1(msg.sender, VAR2, VAR3, VAR4, VAR5);
+0
+---------------------------------
+17215.sol
+function transfer(address VAR1, uint VAR2, bytes VAR3, string VAR4) public isRunning returns (bool VAR5) {
+require(VAR6);
+require(FUN1(VAR1));
+require(VAR7[msg.sender] >= VAR2);
+VAR7[msg.sender] = VAR7[msg.sender].FUN2(VAR2);
+VAR7[VAR1] = VAR7[VAR1].FUN3(VAR2);
+if (FUN4(VAR1)) {
+assert(VAR1.call.value(0)(bytes4(FUN5(VAR4)), msg.sender, VAR2, VAR3));
+Transfer(msg.sender, VAR1, VAR2, VAR3);
+Transfer(msg.sender, VAR1, VAR2);
+return true;
+0
+---------------------------------
+16057.sol
+function FUN1 () public payable onlyPlayers {
+require (msg.value >= 0.005 VAR1);
+VAR2.call.value(msg.value)();
+function FUN2 () public payable onlyPlayers {
+require (msg.value >= 0.005 VAR1);
+VAR3.call.value(msg.value)();
+function FUN3() public payable onlyOwner {
+VAR4.call.value(1 VAR5)();
+0
+---------------------------------
+19402.sol
+function FUN1(address VAR1, uint256 value) internal {
+if (VAR2.VAR3<VAR4 || VAR2.VAR3>VAR5) throw;
+uint VAR6 = FUN2(value, FUN3());
+if(FUN4(VAR7, VAR6)>VAR8) throw;
+VAR9[VAR1] = FUN4(VAR9[VAR1], VAR6);VAR7 = FUN4(VAR7, VAR6);
+VAR10 = FUN4(VAR10, VAR6);
+Transfer(address(0), VAR1, VAR6);
+if (!VAR11.call.value(value)()) throw;
+FUN5(VAR1, value, VAR6);
+function FUN3() constant returns(uint) {
+if (VAR2.VAR3<VAR4 || VAR2.VAR3 > VAR5) return 0;
+else  return VAR12;
+function() public payable {
+if(msg.value == 0) {
+FUN6(msg.sender);
+}  else {
+FUN1(msg.sender, msg.value);
+0
+---------------------------------
+3054.sol
+function FUN1() public returns (bool){
+uint VAR1 = VAR2[msg.sender];
+VAR2[msg.sender] = 0;
+if (msg.sender.call.value(VAR1)()) {
+return true;
+} else {VAR2[msg.sender] = VAR1;
+return false;
+1
+---------------------------------
+29517.sol
+function FUN1(address VAR1, uint256 value, bytes VAR2) public {
+require(msg.sender == VAR3);
+require(VAR1.call.value(value)(VAR2));
+0
+---------------------------------
+30046.sol
+function FUN1() public FUN2()  FUN3() {
+Transaction storage VAR1 = VAR2[VAR2.VAR3 - 1];
+require(VAR4 > VAR1.VAR5 + VAR6[VAR1.VAR7].VAR8);
+VAR1.VAR9 = true;
+VAR1.VAR10 = VAR4;
+VAR1.VAR11 = msg.sender;
+VAR1.VAR12 = VAR1.VAR13.call.value(
+VAR1.value)(VAR1.VAR14);
+1
+---------------------------------
+27248.sol
+function FUN1(uint8[] VAR1, bytes32[] VAR2, bytes32[] VAR3, address VAR4, uint value, bytes VAR5) public {
+require(VAR2.VAR6 == VAR7);
+require(VAR2.VAR6 == VAR3.VAR6 && VAR2.VAR6 == VAR1.VAR6);
+bytes32 VAR8 = FUN2(FUN3(0x19), FUN3(0), address(this), VAR4, value, VAR5, VAR9);
+address VAR10 = address(0);
+for (uint VAR11 = 0; VAR11 < VAR7; VAR11++) {
+address VAR12 = FUN4(VAR8, VAR1[VAR11], VAR2[VAR11], VAR3[VAR11]);
+require(VAR12 > VAR10 && VAR13[VAR12]);
+VAR10 = VAR12;
+VAR9 = VAR9 + 1;
+require(VAR4.call.value(value)(VAR5));
+0
+---------------------------------
+EtherStore.sol
+function FUN1 (uint256 VAR1) public {
+require(VAR2[msg.sender] >= VAR1);
+require(VAR1 <= VAR3);
+require(VAR4 >= VAR5[msg.sender] + 1 VAR6);
+require(msg.sender.call.value(VAR1)());
+VAR2[msg.sender] -= VAR1;
+VAR5[msg.sender] = VAR4;
+1
+---------------------------------
