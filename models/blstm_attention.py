@@ -2,6 +2,8 @@ from __future__ import print_function
 
 import warnings
 import numpy as np
+import tensorflow.nn
+
 from keras.utils import to_categorical
 from sklearn.metrics import confusion_matrix
 from sklearn.utils import compute_class_weight
@@ -172,18 +174,19 @@ class BLSTM_Attention:
         self.batch_size = batch_size
         self.epochs = epochs
         self.class_weight = compute_class_weight(class_weight='balanced', classes=[0, 1], y=labels)
-        model = Sequential()
-        model.add(Bidirectional(LSTM(300, return_sequences=True), input_shape=(vectors.shape[1], vectors.shape[2])))
-        model.add(AttentionWithContext())
-        model.add(Addition())
-        model.add(ReLU())
-        model.add(Dropout(dropout))
-        model.add(Dense(300))
-        model.add(ReLU())
-        model.add(Dropout(dropout))
-        model.add(Dense(2, activation='softmax'))
-        # Lower learning rate to prevent divergence
 
+        model = Sequential([
+            # return_sequences for each timestep'h(t) in windows
+            # if return_sequences=False, then h(t) is the last timestep's output
+            Bidirectional(LSTM(300, return_sequences=True), input_shape=(vectors.shape[1], vectors.shape[2])) # dim
+            , AttentionWithContext() # dim
+            , Addition() # dim
+
+            , Dropout(dropout)
+            , Dense(2, activation=tensorflow.nn.softmax)
+        ])
+
+        # Lower learning rate to prevent divergence
         adamax = Adamax(lr)
         model.compile(adamax, 'categorical_crossentropy', metrics=['accuracy'])
         self.model = model

@@ -118,7 +118,7 @@ Gets filename, either loads vector DataFrame if exists or creates it if not
 Instantiate neural network, pass data to it, train, test, print accuracy
 """
 
-
+# tensorflow 1.15 && keras 2.2.5
 def main():
     filename = args.dataset
     parse_file(filename)
