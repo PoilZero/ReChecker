@@ -8,21 +8,24 @@ This package is a python implementation of smart contract vulnerability detectio
 ## Requirements
 
 #### Required Packages
-* **python**3
-* **TensorFlow** 1.13
-* **keras** 2.2.4 with TensorFlow backend
+* **python**3.7 (latest python version support package under)
+* **TensorFlow** 1.15
+* **keras** 2.2.5 with TensorFlow backend
 * **pandas** for data reading and writing
 * **sklearn** for model evaluation
 * **gensim** for word2vec
 
 Run the following script to install the required packages.
+
+(keras version pip will auto fit to tensorflow version)
+
 ```shell
+conda create -n tf1 python=3.7
+conda activate tf1
+
 pip install --upgrade pip
-pip install --upgrade tensorflow
-pip install keras
-pip install pandas
-pip install scikit-learn
-pip install gensim
+pip install tensorflow==1.15
+pip install keras pandas scikit-learn gensim
 ```
 
 ### Required Dataset
