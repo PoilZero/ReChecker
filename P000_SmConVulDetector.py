@@ -3,7 +3,6 @@ import sys
 import warnings
 warnings.filterwarnings("ignore")
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
-import ipykernel
 
 import numpy as np
 import pandas
@@ -132,10 +131,6 @@ def main():
         df.to_pickle(vector_filename)
 
 
-    # print('-' * 80)
-    # print(base) # reentrancy_1671
-    # print(vector_filename) # reentrancy_1671_fragment_vectors.pkl
-    # print('-' * 80)
     print('-'*33)
     print('BLSTM-ATT')
     print('-'*33)

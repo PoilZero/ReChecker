@@ -56,9 +56,13 @@ class LSTM_Model:
     """
 
     def train(self):
-        self.model.fit(self.x_train, self.y_train, batch_size=self.batch_size, epochs=self.epochs,
-                       class_weight=self.class_weight)
-        # self.model.save_weights(self.name + "_model.pkl")
+        self.model.fit(
+            self.x_train, self.y_train
+            , batch_size=self.batch_size
+            , epochs=self.epochs
+            , class_weight=self.class_weight
+            , verbose=2
+        )
 
     """
     Tests accuracy of model
@@ -66,7 +70,6 @@ class LSTM_Model:
     """
 
     def test(self):
-        # self.model.load_weights("reentrancy_code_snippets_2000_model.pkl")
         values = self.model.evaluate(self.x_test, self.y_test, batch_size=self.batch_size, verbose=1)
         print("Accuracy: ", values[1])
         predictions = (self.model.predict(self.x_test, batch_size=self.batch_size)).round()
@@ -79,3 +82,4 @@ class LSTM_Model:
         precision = tp / (tp + fp)
         print('Precision: ', precision)
         print('F1 score: ', (2 * precision * recall) / (precision + recall))
+        print()

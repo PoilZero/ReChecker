@@ -2,5 +2,10 @@
 
 for i in $(seq 1 10);
 do
-python SmConVulDetector.py | tee evaluations/logs/blstm_att/smartcheck_"$i".log;
+python P000_SmConVulDetector.py -D train_data/infinite_loop_1317.txt | tee logs/infinite_loop_1317.txt_"$i".log;
+done
+
+for i in $(seq 1 10);
+do
+python P000_SmConVulDetector.py -D train_data/reentrancy_1671.txt | tee logs/reentrancy_1671.txt_"$i".log;
 done
