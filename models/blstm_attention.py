@@ -156,8 +156,8 @@ class BLSTM_Attention:
         '''
             np.array(data).shape == (1671, 2)
             2:
-                0: vector=>(100, 300): vectors[1671]
-                1: label=>0/1: labels[1671]
+                0: vector=>(100, 300)
+                1: label=>0/1
         '''
         vectors = np.stack(data.iloc[:, 0].values)
         labels = data.iloc[:, 1].values
@@ -201,8 +201,8 @@ class BLSTM_Attention:
     """
 
     def test(self):
-        # self.model.load_weights(self.name + "_model.pkl")
-        values = self.model.evaluate(self.x_test, self.y_test, batch_size=self.batch_size)
+        # self.model.load_weights("reentrancy_code_snippets_2000_model.pkl")
+        values = self.model.evaluate(self.x_test, self.y_test, batch_size=self.batch_size, verbose=1)
         print("Accuracy: ", values[1])
         predictions = (self.model.predict(self.x_test, batch_size=self.batch_size)).round()
 

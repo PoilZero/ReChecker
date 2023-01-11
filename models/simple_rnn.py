@@ -24,12 +24,6 @@ Baseline FC
 class Simple_RNN:
     def __init__(self, data, name="", batch_size=args.batch_size, lr=args.lr, epochs=args.epochs, dropout=args.dropout,
                  threshold=args.threshold):
-        '''
-            np.array(data).shape == (1671, 2)
-            2:
-                0: vector=>(100, 300): vectors[1671]
-                1: label=>0/1: labels[1671]
-        '''
         vectors = np.stack(data.iloc[:, 0].values)
         labels = data.iloc[:, 1].values
         x_train, x_test, y_train, y_test = train_test_split(vectors, labels,

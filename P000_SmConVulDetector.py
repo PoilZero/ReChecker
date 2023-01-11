@@ -131,7 +131,7 @@ def main():
         df = get_vectors_df(filename, vector_length)
         df.to_pickle(vector_filename)
 
-    model = BLSTM_Attention(df, name=base)
+
     # print('-' * 80)
     # print(base) # reentrancy_1671
     # print(vector_filename) # reentrancy_1671_fragment_vectors.pkl
