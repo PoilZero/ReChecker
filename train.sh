@@ -2,10 +2,8 @@
 
 for i in $(seq 1 10);
 do
-python P000_SmConVulDetector.py -D train_data/infinite_loop_1317.txt | tee logs/infinite_loop_1317.txt_"$i".log;
-done
-
-for i in $(seq 1 10);
-do
-python P000_SmConVulDetector.py -D train_data/reentrancy_1671.txt | tee logs/reentrancy_1671.txt_"$i".log;
+python P000_SmConVulDetector.py -D train_data/delegatecall_196_directlly_from_dataset.txt | tee logs/delegatecall_196_directlly_from_dataset.txt_"$i".log;
+python P000_SmConVulDetector.py -D train_data/integeroverflow_275_directlly_from_dataset.txt | tee logs/integeroverflow_275_directlly_from_dataset.txt_"$i".log;
+#python P000_SmConVulDetector.py -D train_data/reentrancy_273_directlly_from_dataset.txt | tee logs/reentrancy_273_directlly_from_dataset.txt_"$i".log;
+#python P000_SmConVulDetector.py -D train_data/timestamp_349_directlly_from_dataset.txt | tee logs/timestamp_349_directlly_from_dataset.txt_"$i".log;
 done

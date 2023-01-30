@@ -14,9 +14,8 @@ from models.lstm import LSTM_Model
 from models.simple_rnn import Simple_RNN
 from P001_parser import parameter_parser
 
-
 args = parameter_parser()
-
+warnings.filterwarnings("ignore")
 for arg in vars(args):
     print(arg, getattr(args, arg))
 
@@ -136,28 +135,24 @@ def main():
     print('-'*33)
     model = BLSTM_Attention(df, name=base)
     model.train()
-    model.test()
-
+    
     print('-'*33)
     print('BLSTM')
     print('-'*33)
     model = BLSTM(df, name=base)
     model.train()
-    model.test()
 
     print('-'*33)
     print('LSTM_Model')
     print('-'*33)
     model = LSTM_Model(df, name=base)
     model.train()
-    model.test()
 
     print('-'*33)
     print('Simple_RNN')
     print('-'*33)
     model = Simple_RNN(df, name=base)
     model.train()
-    model.test()
 
 
 
